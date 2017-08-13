@@ -1,8 +1,16 @@
 <div class="row">
   <div class="col-md-5">
-    <app-recipe-list></app-recipe-list>
+    <app-recipe-list (RecipeItemEmit)="recipe_detail=$event"></app-recipe-list>
   </div>
   <div class="col-md-7">
-    <app-recipe-detail></app-recipe-detail>
+
+    <app-recipe-detail
+      *ngIf="recipe_detail;else infoText"
+      [RecipeDetail]='recipe_detail'
+    ></app-recipe-detail>
+
+    <ng-template $infoText>
+        <p>This is info text!</p>
+    </ng-template>
   </div>
 </div>
